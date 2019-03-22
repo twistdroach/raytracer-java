@@ -1,9 +1,14 @@
 package com.twistdroach.raytracer.basics;
 
-public class Point3D {
-	double x;
-	double y;
-	double z;
+/**
+ * Immutable Point3D, let's see how the garbage collector handles it
+ * @author zrowitsch
+ *
+ */
+public final class Point3D {
+	public final double x;
+	public final double y;
+	public final double z;
 	
 	public Point3D() {
 		this(0d, 0d, 0d);
@@ -19,19 +24,12 @@ public class Point3D {
 		this.z = z;
 	}
 	
-	public static Vector3D subtract(Point3D p1, Point3D p2) {
-		return new Vector3D(p1.x - p2.x, p1.y - p2.y, p1.z - p2.z);
+	public Vector3D subtract(Point3D other) {
+		return new Vector3D(x - other.x, y - other.y, z - other.z);
 	}
 	
 	public Point3D add(Vector3D v) {
-		x += v.x;
-		y += v.y;
-		z += v.z;
-		return this;
-	}
-	
-	public static Point3D add(Point3D p, Vector3D v) {
-		return new Point3D(p).add(v);
+		return new Point3D(x + v.x, y + v.y, z + v.z);
 	}
 	
 	public String toString() {

@@ -15,11 +15,11 @@ public class Sphere extends GeometricObject {
 	@Override
 	public ShadeRec hit(Ray ray) {
 		ShadeRec retVal = new ShadeRec();
-		Vector3D temp = Point3D.subtract(ray.getOrigin(), center);
+		Vector3D temp = ray.getOrigin().subtract(center);
 		// quadratic formula
-		double a = Vector3D.dot(ray.getDirection(), ray.getDirection());
-		double b = Vector3D.dot(new Vector3D(temp).multiply(2.0d), ray.getDirection());
-		double c = Vector3D.dot(ray.getDirection(), ray.getDirection()) - radius * radius;
+		double a = ray.getDirection().dot(ray.getDirection());
+		double b = temp.multiply(2.0d).dot(ray.getDirection());
+		double c = ray.getDirection().dot(ray.getDirection()) - radius * radius;
 		double discriminant = b * b - 4.0d * a * c;
 		
 		// the discriminant determines how many hits we have on the sphere
@@ -34,9 +34,9 @@ public class Sphere extends GeometricObject {
 			double t = (-b - e) / denominator;
 			if (t > Constants.kEpsilon) {
 				Vector3D dray = new Vector3D(ray.getDirection()).multiply(t);
-				Vector3D normal = Vector3D.add(temp, dray);
+				Vector3D normal = temp.add(dray);
 				retVal.normal = normal.divide(radius).normal();
-			    retVal.hitPoint = Point3D.add(ray.getOrigin(), dray);
+			    retVal.hitPoint = ray.getOrigin().add(dray);
 			    retVal.hit = true;
 			}
 			
@@ -44,9 +44,9 @@ public class Sphere extends GeometricObject {
 			t = (-b + e) / denominator;
 			if (t > Constants.kEpsilon) {
 				Vector3D dray = new Vector3D(ray.getDirection()).multiply(t);
-				Vector3D normal = Vector3D.add(temp, dray);
+				Vector3D normal = temp.add(dray);
 				retVal.normal = normal.divide(radius).normal();
-			    retVal.hitPoint = Point3D.add(ray.getOrigin(), dray);
+			    retVal.hitPoint = ray.getOrigin().add(dray);
 			    retVal.hit = true;
 			}
 			

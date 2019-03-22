@@ -14,4 +14,13 @@ public class Ray {
 		this.origin = origin;
 		this.direction = direction;
 	}
+	
+	// TODO make read only or construct new copy
+	public Point3D getOrigin() {
+		return origin;
+	}
+	
+	public Vector3D getDirection() {
+		return direction;
+	}
 }

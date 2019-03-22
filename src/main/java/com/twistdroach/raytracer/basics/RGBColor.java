@@ -19,4 +19,10 @@ public class RGBColor {
 		g = green;
 		b = blue;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("% .2f, % .2f, % .2f", r, g, b);
+		
+	}
 }

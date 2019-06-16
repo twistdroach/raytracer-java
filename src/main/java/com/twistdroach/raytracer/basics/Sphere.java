@@ -1,7 +1,5 @@
 package com.twistdroach.raytracer.basics;
 
-import com.twistdroach.raytracer.basics.Constants;
-
 public class Sphere extends GeometricObject {
 	
 	final Point3D center;
@@ -15,10 +13,9 @@ public class Sphere extends GeometricObject {
 	@Override
 	public ShadeRec hit(Ray ray) {
 		ShadeRec retVal = new ShadeRec();
-		Vector3D temp = ray.getOrigin().subtract(center);
 		// quadratic formula
 		double a = ray.getDirection().dot(ray.getDirection());
-		double b = temp.multiply(2.0d).dot(ray.getDirection());
+		double b = ray.getOrigin().subtract(center).multiply(2.0d).dot(ray.getDirection());
 		double c = ray.getDirection().dot(ray.getDirection()) - radius * radius;
 		double discriminant = b * b - 4.0d * a * c;
 		
@@ -34,7 +31,7 @@ public class Sphere extends GeometricObject {
 			double t = (-b - e) / denominator;
 			if (t > Constants.kEpsilon) {
 				Vector3D dray = new Vector3D(ray.getDirection()).multiply(t);
-				Vector3D normal = temp.add(dray);
+				Vector3D normal = ray.getOrigin().subtract(center).add(dray);
 				retVal.normal = normal.divide(radius).normal();
 			    retVal.hitPoint = ray.getOrigin().add(dray);
 			    retVal.hit = true;
@@ -44,7 +41,7 @@ public class Sphere extends GeometricObject {
 			t = (-b + e) / denominator;
 			if (t > Constants.kEpsilon) {
 				Vector3D dray = new Vector3D(ray.getDirection()).multiply(t);
-				Vector3D normal = temp.add(dray);
+				Vector3D normal = ray.getOrigin().subtract(center).add(dray);
 				retVal.normal = normal.divide(radius).normal();
 			    retVal.hitPoint = ray.getOrigin().add(dray);
 			    retVal.hit = true;

@@ -11,7 +11,7 @@ public class RGBColor {
 	public final double g;
 	public final double b;
 	
-	public RGBColor(int red, int green, int blue) {
+	public RGBColor(double red, double green, double blue) {
 		if (red < 0 || red > 1 ||
 				green < 0 || green > 1 ||
 				blue < 0 || blue > 1)
@@ -21,8 +21,16 @@ public class RGBColor {
 		b = blue;
 	}
 	
-	public int getColor() {
+	private static int getColor(double r, double g, double b) {
 		return ((int)(r*255) << 16) | ((int)(g*255) << 8) | (int)(b * 255);
+	}
+	
+	public int getColor() {
+		return getColor(r, g, b);
+	}
+	
+	public int getColor(double gamma) {
+		return getColor(Math.pow(r,  1/gamma), Math.pow(g, 1/gamma), Math.pow(b, 1/gamma));
 	}
 	
 	@Override

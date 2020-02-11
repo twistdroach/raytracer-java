@@ -20,16 +20,14 @@ public class App
     public static void main( String[] args )
     {
         JFrame frame = new JFrame();
-        //DrawPanel button = new DrawPanel();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //frame.getContentPane().add(button);
         BufferedImage img = new BufferedImage(200, 200, BufferedImage.TYPE_INT_BGR);
 
         frame.getContentPane().add(new JLabel(new ImageIcon(img)));
 
-        frame.setSize(200,200);
+        frame.setSize(250,250);
 
         frame.setVisible(true);
         
@@ -42,8 +40,6 @@ public class App
 					img.setRGB(x, y, Color.WHITE.getRGB());
 				}
 				frame.repaint();
-				System.out.println(String.format("X: %d, Y: %d, Color: %s", x, y, c.toString()));
-				
 			}
     	};
 

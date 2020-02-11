@@ -32,8 +32,9 @@ public class Vector3D {
 		return new Vector3D(x+other.x, y+other.y, z+other.z);
 	}
 	
-	public Normal normal() {
-		return new Normal(this);
+	public Vector3D normal() {
+		double length = Math.sqrt(x*x + y*y +z*z);
+		return new Vector3D(x/length, y/length, z/length);
 	}
 	
 	public double dot(Vector3D other) {

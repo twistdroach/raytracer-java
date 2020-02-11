@@ -19,7 +19,7 @@ public class ShadeRec {
 	/**
 	 * Normal vector at hit point
 	 */
-	public Normal normal = null;
+	public Vector3D normal = null;
 
 	/**
 	 * Color at intersection point

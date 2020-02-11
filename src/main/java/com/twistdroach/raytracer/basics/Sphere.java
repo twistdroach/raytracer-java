@@ -1,7 +1,7 @@
 package com.twistdroach.raytracer.basics;
 
 public class Sphere extends GeometricObject {
-	
+
 	final Point3D center;
 	final double radius;
 	
@@ -14,13 +14,12 @@ public class Sphere extends GeometricObject {
 	public ShadeRec hit(Ray ray) {
 		ShadeRec retVal = new ShadeRec();
 		// quadratic formula
+		Vector3D temp = ray.getOrigin().subtract(center);
 		double a = ray.getDirection().dot(ray.getDirection());
-		double b = ray.getOrigin().subtract(center).multiply(2.0d).dot(ray.getDirection());
-		double c = ray.getDirection().dot(ray.getDirection()) - radius * radius;
-		double discriminant = b * b - 4.0d * a * c;
-		
+		double b = temp.multiply(2.0d).dot(ray.getDirection());
+		double c = temp.dot(temp) - radius * radius;
+		double discriminant = (b * b) - (4.0d * a * c);
 		// the discriminant determines how many hits we have on the sphere
-		System.out.println(ray.getOrigin());
 		if (discriminant < 0.0d) {
 			retVal.hit = false;
 		} else {

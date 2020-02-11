@@ -13,29 +13,26 @@ public class SphereTest {
 		
 	}
 	
-	@Test
-	public void testSimpleHit() {
+	private boolean hitSphere(double rayOriginX, double rayOriginY, double rayOriginZ) {
 		Point3D c = new Point3D(0,0,0);
-		Sphere s = new Sphere(c, 2);
+		Sphere s = new Sphere(c, 1);
 		
 		Vector3D viewPlaneDirection = new Vector3D(0, 0, -1);
-		Point3D viewPlaneOrigin = new Point3D(0,0,2);
+		Point3D viewPlaneOrigin = new Point3D(rayOriginX, rayOriginY, rayOriginZ);
 		Ray r = new Ray(viewPlaneOrigin, viewPlaneDirection);
 		
 		ShadeRec sr = s.hit(r);
-		assertTrue(sr.hit);
+		return sr.hit;
+	}
+	
+	@Test
+	public void testSimpleHit() {
+		assertTrue(hitSphere(0,0,2));
 	}
 	
 	@Test
 	public void testSimpleMiss() {
-		Point3D c = new Point3D(0,0,0);
-		Sphere s = new Sphere(c, 2);
-		
-		Vector3D viewPlaneDirection = new Vector3D(0, 0, -1);
-		Point3D viewPlaneOrigin = new Point3D(3,3,2);
-		Ray r = new Ray(viewPlaneOrigin, viewPlaneDirection);
-		
-		ShadeRec sr = s.hit(r);
-		assertFalse(sr.hit);
+		assertFalse(hitSphere(3, 3, 2));
+		assertFalse(hitSphere(2, 2, 2));
 	}
 }

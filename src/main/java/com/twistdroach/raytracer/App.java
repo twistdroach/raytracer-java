@@ -23,7 +23,7 @@ public class App
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        BufferedImage img = new BufferedImage(200, 200, BufferedImage.TYPE_INT_BGR);
+        BufferedImage img = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
 
         frame.getContentPane().add(new JLabel(new ImageIcon(img)));
 
@@ -34,11 +34,7 @@ public class App
     	PixelListener textOutput =new PixelListener() {
 			@Override
 			public void writePixel(int x, int y, RGBColor c) {
-				if (c == RGBColor.BLACK) {
-					img.setRGB(x, y, Color.BLACK.getRGB());
-				} else {
-					img.setRGB(x, y, Color.WHITE.getRGB());
-				}
+				img.setRGB(x, y, c.getColor());
 				frame.repaint();
 			}
     	};

@@ -28,16 +28,23 @@ public class App
 
         frame.setVisible(true);
         
-    	PixelListener textOutput =new PixelListener() {
+    	PixelListener frameOutput =new PixelListener() {
 			@Override
 			public void writePixel(int x, int y, RGBColor c) {
 				img.setRGB(x, y, c.getColor());
 				frame.repaint();
 			}
     	};
+    	
+//    	PixelListener textOutput =new PixelListener() {
+//			@Override
+//			public void writePixel(int x, int y, RGBColor c) {
+//				System.out.println(String.format("x(%s) y(%s) color(%s)", x, y, c.toString()));
+//			}
+//    	};
 
     	SimpleScene scene = new SimpleScene();
     	scene.build();
-    	scene.render(textOutput);
+    	scene.render(frameOutput);
     }
 }

@@ -1,13 +1,10 @@
 package com.twistdroach.raytracer;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import com.twistdroach.raytracer.basics.PixelListener;
 import com.twistdroach.raytracer.basics.RGBColor;
 

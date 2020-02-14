@@ -5,9 +5,14 @@ public class Sphere extends GeometricObject {
 	final Point3D center;
 	final double radius;
 	
-	public Sphere(Point3D center, double radius) {
+	public Sphere(Point3D center, double radius, RGBColor c) {
 		this.center = center;
 		this.radius = radius;
+		this.color = c;
+	}
+	
+	public Sphere(Point3D center, double radius) {
+		this(center, radius, RGBColor.RED);
 	}
 	
 	@Override

@@ -30,6 +30,7 @@ public class Sampler2DTest {
 		
 	}
 	
+	//This will fail due to random sampling offset...
 	@Test
 	public void testSimpleConcreteSampler2D() {
 		ConcreteSampler2D samp = new ConcreteSampler2D();

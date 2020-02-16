@@ -11,8 +11,12 @@ public final class Utils {
 	
 	public static int getRandomIntegerInRange(int minInclusive, int maxExclusive) {
 
-		if (minInclusive >= maxExclusive) {
+		if (minInclusive > maxExclusive) {
 			throw new IllegalArgumentException("max must be greater than min");
+		}
+		
+		if (minInclusive == maxExclusive) {
+			return minInclusive;
 		}
 
 		return RANDOM.nextInt((maxExclusive - minInclusive) + 1) + minInclusive;
